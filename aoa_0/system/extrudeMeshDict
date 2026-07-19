@@ -1,0 +1,40 @@
+/*--------------------------------*- C++ -*----------------------------*\
+  Collapses the (locally 3D-refined) snappyHexMesh output into a
+  genuinely 1-cell-thick 2D mesh, by taking the "front" patch as a
+  2D face set and extruding it by exactly one layer.
+
+  This is the standard workaround for snappyHexMesh's inherently
+  isotropic (x,y,z) refinement -- see OpenFOAM's own tutorial:
+  $FOAM_TUTORIALS/incompressible/overSimpleFoam/aeroFoil
+\*-----------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      extrudeMeshDict;
+}
+
+constructFrom   patch;
+
+sourceCase      ".";
+sourcePatches   (front);
+
+// the patch name that will be created on the "far" (extruded-to) side
+exposedPatchName back;
+
+flipNormals     false;
+
+extrudeModel    linearNormal;
+
+
+
+linearNormalCoeffs
+{
+    thickness   0.1;   // total z-thickness -- match your original
+                        // blockMesh zh*2 value
+    nLayers         1;
+    expansionRatio  1.0;
+}
+
+mergeFaces      false;

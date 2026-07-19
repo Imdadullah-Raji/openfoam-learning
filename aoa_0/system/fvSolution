@@ -1,0 +1,48 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+
+solvers
+{
+    p
+    {
+        solver         GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+    pFinal
+    {
+        $p; 
+        tolerance 1e-07;
+        reltol 0;
+    }
+
+    U
+    {
+        solver         smoothSolver;
+        smoother       symGaussSeidel;
+        tolerance      1e-05;
+        relTol         0.1;
+    }
+    UFinal
+    {
+        $U;
+        tolerance 1e-06;
+        reltol 0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor yes;
+    nOuterCorrectors 2; //default 1, which is effectively PISO
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 2; //use if there is non-orthogonality in the mesh
+    pRefCell        0;
+    pRefValue       0;
+}

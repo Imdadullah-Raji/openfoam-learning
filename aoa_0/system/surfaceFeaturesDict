@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------*\
+  Extract sharp feature edges (e.g. the trailing edge cusp) from the
+  airfoil STL so snappyHexMesh can snap to them properly.
+\*-----------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeaturesDict;
+}
+
+surfaces ("naca0012.stl");
+
+// angle (degrees) between adjacent facet normals above which an edge is
+// flagged as a "feature". 150 is the common default -- picks up sharp
+// corners like the trailing edge while ignoring the smooth curvature
+// of the rest of the surface.
+includedAngle   150;
+
+subsetFeatures
+{
+    nonManifoldEdges    no;
+    openEdges           yes;
+}
+writeObj            yes; 
