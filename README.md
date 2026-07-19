@@ -20,6 +20,15 @@ chmod +x runSweep.sh
 ./runSweep.sh
 ```
 
+## Visualizing Results 
+
+Navigate to the folders corresponding to a specific angle of attack. The naming convention is aoa_{aoa}. For example to see results for $ \text{AoA} = 15^\circ $:
+
+```bash
+cd aoa_15
+paraFoam
+```
+
 ## Notes
 
 - Ensure **OpenFOAM 13** is installed and its environment is sourced before running the script.
