@@ -22,7 +22,7 @@ chmod +x runSweep.sh
 
 ## Visualizing Results 
 
-Navigate to the folders corresponding to a specific angle of attack. The naming convention is aoa_{aoa}. For example to see results for $ \text{AoA} = 15^\circ $:
+Navigate to the folders corresponding to a specific angle of attack. The naming convention is aoa_{aoa}. For example to see results for AoA = 15 deg :
 
 ```bash
 cd aoa_15
