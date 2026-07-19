@@ -1,0 +1,10 @@
+# VS Code
+.vscode/
+
+# OpenFOAM generated files
+processor*/
+postProcessing/
+[1-9]*/
+[1-9]*.[0-9]*/
+log*
+*.OpenFOAM
